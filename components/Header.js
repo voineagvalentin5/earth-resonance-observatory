@@ -21,7 +21,11 @@ export default function Header() {
   return (
     <header className="dashboard-header">
       <div className="brand-block">
-        <h1>EARTH RESONANCE OBSERVATORY</h1>
+        <h1 className="sr-only">Earth Resonance Observatory</h1>
+        <picture>
+          <source type="image/webp" srcSet="/brand/ero-wordmark.webp 2x" />
+          <img className="brand-wordmark" src="/brand/ero-wordmark.png" width="482" height="160" alt="" />
+        </picture>
         <p>NOAA space-weather monitor · Schumann values are reference only</p>
       </div>
       <div className={`live-block ${live ? 'is-live' : 'is-off'}`}>

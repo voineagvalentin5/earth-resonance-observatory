@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import PlanetStatusSidebar from '../components/PlanetStatusSidebar';
 import EarthResonanceView from '../components/EarthResonanceView';
 import FrequencyLandscape from '../components/FrequencyLandscape';
+import ReadingsHistory from '../components/ReadingsHistory';
 import TimeAxisControl, { PatternDetection, ContextData, PatternSummary, EventTimeline } from '../components/TimeAxisControl';
 import { useStore } from '../stores/useStore';
 import { formatUtc, formatDetroit } from '../lib/time';
@@ -15,7 +16,20 @@ export default function Home() {
     <>
       <Head>
         <title>Earth Resonance Observatory</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <meta name="description" content="Live NOAA space-weather monitor and the SOS-70 Tomsk Schumann spectrogram. Official 3-hour Kp, solar wind, and GOES flux; Schumann values are reference only." />
+        <meta property="og:title" content="Earth Resonance Observatory" />
+        <meta property="og:description" content="Live NOAA space-weather monitor and the SOS-70 Tomsk Schumann spectrogram." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://ero.codex-hive.com/" />
+        <meta property="og:image" content="https://ero.codex-hive.com/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Earth Resonance Observatory" />
+        <meta name="twitter:image" content="https://ero.codex-hive.com/og-image.jpg" />
       </Head>
       <main className="observatory-shell">
         <Header />
@@ -29,6 +43,7 @@ export default function Home() {
           <ContextData />
           <EventTimeline />
         </div>
+        <ReadingsHistory />
         <footer className="dashboard-footer">
           <span className="fh">DATA SOURCES</span>
           <b className="src-live">NOAA SWPC: Kp, solar wind, GOES X-ray / protons / electrons, OVATION (live)</b>

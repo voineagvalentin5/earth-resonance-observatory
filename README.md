@@ -39,7 +39,9 @@ Classifications shown on the status card:
 
 - **Frequency Landscape (2D + 3D).** The SOS-70 JPEG (same-origin snapshot or server proxy) is sampled in the browser (`lib/spectrogram.js`): each pixel is matched to the nearest colour on the image's own colour bar, then median-binned into an 80 × 160 frequency × time grid (0–40 Hz, the image's full time span). Both the flat heatmap (`components/Spectrogram2D.js`) and the 3D surface (`components/Spectrogram3D.js`, three.js) show that **relative intensity, not calibrated dB**, and the panels say so. The 2D view has time on the x axis, frequency in Hz on the y axis, dashed textbook Schumann bands, and a colour legend; hover shows frequency and an approximate place in the ~3-day window, never a clock time. On a wide desktop the 2D panel sits beside the 3D landscape; on narrower screens it stacks above. If the image fails or the colour match is poor, both panels switch to a clearly labelled "Reference model, not live" built only from the textbook harmonics. A "Source image" toggle on the 2D panel shows the original spectrogram. Plot-area and colour-bar positions were measured on the 1540 × 460 image of 20 Nov 2026; if SOS-70 changes the layout, re-measure them.
 - **Globe.** `components/Globe.js` renders NASA Blue Marble and night-lights textures (public domain, saved under `public/textures/`, see `SOURCES.md`) with the day/night line computed from the current sun position (`lib/sun.js`). It is a decorative base map, not a live image, and is labelled that way. No aurora oval is drawn, because only the OVATION peak value is fetched, not the grid.
+- **Readings history.** A scrollable, zoomable histogram below the main grid (wheel or pinch to zoom, drag to pan, hover for the exact value in UTC and America/Detroit). Metrics you can toggle: official 3-hour Kp, solar wind speed, density, Bz, GOES X-ray, protons ≥10 MeV, and electrons ≥2 MeV. At first load the chart uses the longest public NOAA SWPC windows (about 7 days for Kp, solar wind, and the GOES 7-day flux files; about 6 hours for 1-minute estimated Kp, drawn as a white line on the Kp lane). A scheduled GitHub Action (the same Pages workflow as the Tomsk snapshot) merges those windows into `public/data/history/*.json`, deduplicated by timestamp and capped at 90 days. Points older than 8 days may be thinned to at most one *real* sample per 15 minutes; empty bins stay empty — nothing is interpolated or back-filled. The caption states how far back the history actually goes. GitHub disables scheduled workflows after 60 days of repository inactivity; a gap from that is left as a gap.
 - Live values pulse briefly when a new poll changes them; non-live items stay grey and labelled.
+- **Emblem.** The official wordmark (hex emblem + ERO letters) sits in the header (`public/brand/ero-wordmark.webp`). The hex emblem is the favicon and apple-touch icon; the lockup is `public/og-image.jpg`.
 
 ## Fractal Time
 
@@ -69,5 +71,7 @@ The Pages workflow does this on every push to `main`, on demand, and every 30 mi
 - `lib/time.js` — UTC / America/Detroit stamps and the fractal display transform
 - `pages/api/live.js` — cached live payload when run as a server (30 s cache)
 - `pages/api/schumann-spectrogram.js` — Tomsk JPEG proxy when run as a server
-- `.github/workflows/pages.yml` — static build, Tomsk snapshot, and Pages deploy
+- `.github/workflows/pages.yml` — static build, Tomsk snapshot, NOAA history archive, and Pages deploy
+- `scripts/append-history.mjs` — merge latest NOAA windows into `public/data/history/`
+- `lib/history.js` — history fetch, merge, and cap (real samples only)
 - `stores/useStore.js` — Zustand store; no synthetic series

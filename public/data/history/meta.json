@@ -1,0 +1,72 @@
+{
+  "ok": true,
+  "updatedAt": "2026-11-20T18:09:55.051Z",
+  "capDays": 90,
+  "thinAfterDays": 8,
+  "thinMinutes": 15,
+  "note": "Real NOAA SWPC samples only. Gaps are left as gaps. Points older than 8 days may be thinned to at most one real sample per 15 minutes; no interpolation or back-fill.",
+  "span": {
+    "from": "2026-11-13T00:00:00.000Z",
+    "to": "2026-11-20T18:06:00.000Z",
+    "days": 7.75,
+    "count": 44154
+  },
+  "metrics": {
+    "kp": {
+      "file": "kp.json",
+      "count": 62,
+      "from": "2026-11-13T00:00:00.000Z",
+      "to": "2026-11-20T15:00:00.000Z",
+      "bytesEstimate": 1069
+    },
+    "kp1m": {
+      "file": "kp1m.json",
+      "count": 362,
+      "from": "2026-11-20T12:03:00.000Z",
+      "to": "2026-11-20T18:04:00.000Z",
+      "bytesEstimate": 6166
+    },
+    "speed": {
+      "file": "speed.json",
+      "count": 9874,
+      "from": "2026-11-13T18:04:00.000Z",
+      "to": "2026-11-20T18:06:00.000Z",
+      "bytesEstimate": 185917
+    },
+    "density": {
+      "file": "density.json",
+      "count": 9874,
+      "from": "2026-11-13T18:04:00.000Z",
+      "to": "2026-11-20T18:06:00.000Z",
+      "bytesEstimate": 176589
+    },
+    "bz": {
+      "file": "bz.json",
+      "count": 9878,
+      "from": "2026-11-13T18:04:00.000Z",
+      "to": "2026-11-20T18:06:00.000Z",
+      "bytesEstimate": 181995
+    },
+    "xray": {
+      "file": "xray.json",
+      "count": 10076,
+      "from": "2026-11-13T18:05:00.000Z",
+      "to": "2026-11-20T18:06:00.000Z",
+      "bytesEstimate": 351721
+    },
+    "proton": {
+      "file": "proton.json",
+      "count": 2012,
+      "from": "2026-11-13T18:05:00.000Z",
+      "to": "2026-11-20T18:00:00.000Z",
+      "bytesEstimate": 65647
+    },
+    "electron": {
+      "file": "electron.json",
+      "count": 2016,
+      "from": "2026-11-13T18:05:00.000Z",
+      "to": "2026-11-20T18:00:00.000Z",
+      "bytesEstimate": 61992
+    }
+  }
+}

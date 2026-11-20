@@ -4,4 +4,6 @@ out/
 *.log
 .DS_Store
 .next-preview/
-public/data/
+public/data/*
+!public/data/history/
+!public/data/history/**
