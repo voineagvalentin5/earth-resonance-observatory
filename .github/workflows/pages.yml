@@ -1,0 +1,71 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    # Refresh the SOS-70 Tomsk spectrogram snapshot about every 30 minutes.
+    - cron: '7,37 * * * *'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Fetch SOS-70 Tomsk spectrogram (no CORS upstream, so publish it same-origin)
+        run: |
+          mkdir -p public/data
+          now=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          if curl -fsSL --max-time 60 --retry 2 \
+               -A 'EarthResonanceObservatory/1.0 (+https://ero.codex-hive.com)' \
+               -D /tmp/shm-headers.txt -o /tmp/shm.jpg \
+               'https://sos70.ru/provider.php?file=shm.jpg' \
+             && [ "$(head -c 3 /tmp/shm.jpg | od -An -tx1 | tr -d ' \n')" = "ffd8ff" ]; then
+            cp /tmp/shm.jpg public/data/shm.jpg
+            lm=$(grep -i '^last-modified:' /tmp/shm-headers.txt | cut -d' ' -f2- | tr -d '\r' || true)
+            printf '{"ok":true,"fetchedAt":"%s","bytes":%s,"sourceLastModified":"%s","source":"https://sos70.ru/provider.php?file=shm.jpg"}\n' \
+              "$now" "$(stat -c %s /tmp/shm.jpg)" "$lm" > public/data/shm-meta.json
+            echo "SOS-70 image fetched: $(stat -c %s /tmp/shm.jpg) bytes"
+          else
+            printf '{"ok":false,"fetchedAt":"%s","source":"https://sos70.ru/provider.php?file=shm.jpg"}\n' "$now" > public/data/shm-meta.json
+            echo "::warning::SOS-70 image could not be fetched; the site will show 'Tomsk feed unavailable'."
+          fi
+          cat public/data/shm-meta.json
+
+      - name: Static export
+        run: |
+          rm -rf pages/api
+          STATIC_EXPORT=1 npm run build
+          touch out/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
