@@ -107,6 +107,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .earth-panel { animation-delay: 0.12s; }
 .time-panel { animation-delay: 0.18s; }
 .pattern-panel { animation-delay: 0.24s; }
+.spec2d-panel { animation-delay: 0.28s; }
 .landscape-panel { animation-delay: 0.3s; }
 .pattern-summary { animation-delay: 0.34s; }
 .context-panel { animation-delay: 0.38s; }
@@ -166,7 +167,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   display: grid;
   gap: var(--gap);
   grid-template-columns: 24fr 28fr 19fr 29fr;
-  grid-template-rows: minmax(0, 30fr) minmax(0, 21fr) minmax(0, 33fr) minmax(0, 16fr);
+  grid-template-rows: minmax(0, 28fr) minmax(0, 19fr) minmax(0, 38fr) minmax(0, 15fr);
   grid-template-areas:
     'status earth earth time'
     'status earth earth swx'
@@ -177,12 +178,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .earth-panel { grid-area: earth; }
 .time-panel { grid-area: time; }
 .pattern-panel { grid-area: swx; }
-.landscape-panel { grid-area: land; }
+.landscape-pair { grid-area: land; min-width: 0; min-height: 0; }
 .pattern-summary { grid-area: flares; }
 .context-panel { grid-area: ctx; }
 .event-timeline { grid-area: tl; }
 
-@media (min-width: 1100px) and (min-height: 700px) {
+@media (min-width: 1200px) and (min-height: 700px) {
   .observatory-shell { height: 100vh; overflow: hidden; }
 }
 
@@ -304,8 +305,32 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .desc-tag { color: var(--muted); font-size: 9.5px; font-style: italic; }
 .status-note { margin: auto 0 0; font-size: 9.5px; line-height: 1.35; color: var(--muted); }
 
-/* ===== 3 Landscape ===== */
-.landscape-panel { position: relative; }
+/* ===== 3 Landscape (2D + 3D) ===== */
+.landscape-pair {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.2fr);
+  gap: var(--gap);
+  min-width: 0;
+  min-height: 0;
+}
+.spec2d-panel, .landscape-panel { position: relative; min-width: 0; min-height: 0; }
+.spec2d-panel .hud-body { padding-bottom: 6px; }
+.spec2d-panel .panel-tools { position: static; padding: 0 12px 4px; }
+.spec2d-body { position: relative; flex: 1; min-height: 0; border-radius: 8px; overflow: hidden; background: radial-gradient(120% 90% at 50% 100%, rgba(30, 70, 120, 0.25), transparent 70%); }
+.spec2d { position: absolute; inset: 0; }
+.spec2d canvas { display: block; }
+.spec2d-tip {
+  position: absolute; z-index: 2; pointer-events: none;
+  transform: translate(-8px, -100%);
+  padding: 3px 7px; border-radius: 4px;
+  background: rgba(2, 8, 16, 0.88); border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff; font: 10px/1.3 var(--font-mono); white-space: nowrap; max-width: calc(100% - 16px);
+}
+.landscape-pair .spec-badge { -webkit-line-clamp: 2; }
+@media (max-width: 1199px) {
+  .landscape-pair { grid-template-columns: 1fr; }
+  .spec2d-panel { min-height: 280px; }
+}
 .panel-tools { position: absolute; top: 6px; right: 10px; z-index: 3; }
 .seg.small button { font-size: 10.5px; padding: 3px 8px; }
 .landscape-panel .hud-body { padding-bottom: 6px; }
@@ -480,6 +505,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
       'tl tl';
   }
   .earth-panel { min-height: 460px; }
+  .spec2d-panel { min-height: 280px; }
   .landscape-panel { min-height: 380px; }
   .context-panel { min-height: 300px; }
   .event-timeline { min-height: 140px; }
@@ -511,11 +537,13 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .floating-card, .resonance-mode { position: relative; inset: auto !important; width: auto !important; left: auto !important; }
   .resonance-mode { grid-column: 1 / -1; }
   .resonance-mode p { display: inline-flex; margin-right: 10px; }
+  .landscape-pair { grid-template-columns: 1fr; }
+  .spec2d-panel { min-height: 300px; }
   .landscape-panel { min-height: 420px; }
   .panel-tools { position: static; padding: 0 12px 6px; }
   .spec-badge { -webkit-line-clamp: 4; }
-  .landscape-body { display: flex; flex-direction: column; }
-  .landscape-body .spec3d, .landscape-body .spec-img { position: relative; flex: 1; min-height: 280px; }
+  .landscape-body, .spec2d-body { display: flex; flex-direction: column; }
+  .landscape-body .spec3d, .landscape-body .spec-img, .spec2d-body .spec2d, .spec2d-body .spec-img { position: relative; flex: 1; min-height: 260px; }
   .spec-key, .orbit-hint { position: static; margin: 4px 2px 0; }
   .orbit-hint { display: block; }
   .context-panel { min-height: 360px; }
