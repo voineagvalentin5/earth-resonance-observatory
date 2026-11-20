@@ -24,7 +24,7 @@ export default function Header() {
         <h1 className="sr-only">Earth Resonance Observatory</h1>
         <picture>
           <source type="image/webp" srcSet="/brand/ero-wordmark.webp 2x" />
-          <img className="brand-wordmark" src="/brand/ero-wordmark.png" width="482" height="160" alt="" />
+          <img className="brand-wordmark" src="/brand/ero-wordmark.png" width="678" height="198" alt="" />
         </picture>
         <p>NOAA space-weather monitor · Schumann values are reference only</p>
       </div>
