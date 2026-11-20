@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import '../styles/globals.css';
+import '../styles/chl-lab-nav.css';
+import LabNav from '../components/LabNav';
 import { startLivePolling } from '../stores/useStore';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
@@ -10,6 +12,7 @@ export default function App({ Component, pageProps }) {
   useEffect(() => startLivePolling(60_000), []);
   return (
     <div className={`${inter.variable} ${mono.variable} app-root`}>
+      <LabNav />
       <Component {...pageProps} />
     </div>
   );

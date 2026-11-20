@@ -23,8 +23,8 @@ export default function Header() {
       <div className="brand-block">
         <h1 className="sr-only">Earth Resonance Observatory</h1>
         <picture>
-          <source type="image/webp" srcSet="/brand/ero-wordmark.webp 2x" />
-          <img className="brand-wordmark" src="/brand/ero-wordmark.png" width="678" height="198" alt="" />
+          <source type="image/webp" srcSet="/brand/ero-wordmark.webp?v=20261120d 2x" />
+          <img className="brand-wordmark" src="/brand/ero-wordmark.png?v=20261120d" width="810" height="198" alt="" />
         </picture>
         <p>NOAA space-weather monitor · Schumann values are reference only</p>
       </div>

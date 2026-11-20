@@ -29,7 +29,8 @@
 }
 * { box-sizing: border-box; }
 html, body, #__next, .app-root { min-height: 100%; margin: 0; }
-html, body { overflow-x: hidden; }
+/* clip (not hidden) so the shared Codex Hive Labs banner can stay sticky while scrolling */
+html, body { overflow-x: clip; }
 body {
   background: radial-gradient(1200px 700px at 52% 28%, #0b2340 0%, rgba(4, 13, 26, 0.6) 45%, transparent 75%), var(--bg0);
   color: var(--text);
@@ -46,7 +47,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 /* ===== Shell ===== */
 .observatory-shell {
-  min-height: 100vh;
+  min-height: calc(100vh - var(--chl-nav-h, 48px));
   padding: var(--gap);
   display: flex;
   flex-direction: column;
@@ -192,7 +193,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 /* Grid fills the first screen; the history panel sits just below and the page can scroll to it. */
 @media (min-width: 1200px) and (min-height: 700px) {
-  .observatory-grid { height: calc(100vh - 164px); min-height: 520px; }
+  .observatory-grid { height: calc(100vh - var(--chl-nav-h, 48px) - 164px); min-height: 520px; }
 }
 
 /* ===== 1 Planet status ===== */
@@ -535,7 +536,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .observatory-grid { grid-template-columns: 1fr; grid-template-areas: 'earth' 'status' 'swx' 'land' 'ctx' 'flares' 'time' 'tl'; }
   .dashboard-header { grid-template-columns: 1fr auto; gap: 8px 10px; padding: 10px 12px; }
   .brand-block { grid-column: 1 / -1; flex-direction: column; align-items: flex-start; gap: 4px; }
-  .brand-block picture, .brand-wordmark { height: 50px; width: auto; }
+  .brand-block picture, .brand-wordmark { height: 56px; width: auto; max-width: 100%; }
   .brand-block p { font-size: 10px; max-width: 100%; }
   .live-block { grid-row: 1; grid-column: 2; align-self: start; }
   .brand-block { grid-column: 1; }
