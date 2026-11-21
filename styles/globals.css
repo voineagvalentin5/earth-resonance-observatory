@@ -47,7 +47,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 /* ===== Shell ===== */
 .observatory-shell {
-  min-height: calc(100vh - var(--chl-nav-h, 48px));
+  min-height: calc(100vh - var(--chl-nav-h, 52px));
   padding: var(--gap);
   display: flex;
   flex-direction: column;
@@ -193,7 +193,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 /* Grid fills the first screen; the history panel sits just below and the page can scroll to it. */
 @media (min-width: 1200px) and (min-height: 700px) {
-  .observatory-grid { height: calc(100vh - var(--chl-nav-h, 48px) - 164px); min-height: 520px; }
+  .observatory-grid { height: calc(100vh - var(--chl-nav-h, 52px) - 164px); min-height: 520px; }
 }
 
 /* ===== 1 Planet status ===== */
