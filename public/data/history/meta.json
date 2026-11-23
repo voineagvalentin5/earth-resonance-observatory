@@ -1,72 +1,72 @@
 {
   "ok": true,
-  "updatedAt": "2026-11-22T15:37:07.617Z",
+  "updatedAt": "2026-11-23T01:56:17.017Z",
   "capDays": 90,
   "thinAfterDays": 8,
   "thinMinutes": 15,
   "note": "Real NOAA SWPC samples only. Gaps are left as gaps. Points older than 8 days may be thinned to at most one real sample per 15 minutes; no interpolation or back-fill.",
   "span": {
     "from": "2026-11-13T00:00:00.000Z",
-    "to": "2026-11-22T15:34:00.000Z",
-    "days": 9.65,
-    "count": 52395
+    "to": "2026-11-23T01:53:00.000Z",
+    "days": 10.08,
+    "count": 52986
   },
   "metrics": {
     "kp": {
       "file": "kp.json",
-      "count": 77,
+      "count": 80,
       "from": "2026-11-13T00:00:00.000Z",
-      "to": "2026-11-22T12:00:00.000Z",
-      "bytesEstimate": 1327
+      "to": "2026-11-22T21:00:00.000Z",
+      "bytesEstimate": 1381
     },
     "kp1m": {
       "file": "kp1m.json",
-      "count": 1792,
+      "count": 2150,
       "from": "2026-11-20T12:03:00.000Z",
-      "to": "2026-11-22T15:33:00.000Z",
-      "bytesEstimate": 30082
+      "to": "2026-11-23T01:50:00.000Z",
+      "bytesEstimate": 36016
     },
     "speed": {
       "file": "speed.json",
-      "count": 11383,
+      "count": 11419,
       "from": "2026-11-13T18:14:00.000Z",
-      "to": "2026-11-22T15:33:00.000Z",
-      "bytesEstimate": 214284
+      "to": "2026-11-23T01:51:00.000Z",
+      "bytesEstimate": 214966
     },
     "density": {
       "file": "density.json",
-      "count": 11383,
+      "count": 11419,
       "from": "2026-11-13T18:14:00.000Z",
-      "to": "2026-11-22T15:33:00.000Z",
-      "bytesEstimate": 203578
+      "to": "2026-11-23T01:51:00.000Z",
+      "bytesEstimate": 204192
     },
     "bz": {
       "file": "bz.json",
-      "count": 11387,
+      "count": 11423,
       "from": "2026-11-13T18:14:00.000Z",
-      "to": "2026-11-22T15:33:00.000Z",
-      "bytesEstimate": 209965
+      "to": "2026-11-23T01:51:00.000Z",
+      "bytesEstimate": 210637
     },
     "xray": {
       "file": "xray.json",
-      "count": 11598,
+      "count": 11639,
       "from": "2026-11-13T18:14:00.000Z",
-      "to": "2026-11-22T15:34:00.000Z",
-      "bytesEstimate": 403863
+      "to": "2026-11-23T01:53:00.000Z",
+      "bytesEstimate": 405401
     },
     "proton": {
       "file": "proton.json",
-      "count": 2385,
+      "count": 2426,
       "from": "2026-11-13T18:10:00.000Z",
-      "to": "2026-11-22T15:25:00.000Z",
-      "bytesEstimate": 77846
+      "to": "2026-11-23T01:45:00.000Z",
+      "bytesEstimate": 79177
     },
     "electron": {
       "file": "electron.json",
-      "count": 2390,
+      "count": 2430,
       "from": "2026-11-13T18:10:00.000Z",
-      "to": "2026-11-22T15:30:00.000Z",
-      "bytesEstimate": 73789
+      "to": "2026-11-23T01:45:00.000Z",
+      "bytesEstimate": 75106
     }
   }
 }
